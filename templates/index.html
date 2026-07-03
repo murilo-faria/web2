@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>HelpDesk TI</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <div class="card">
+
+        <h1>HelpDesk TI</h1>
+
+        <p style="text-align:center;">
+            Bem-vindo, <strong>{{ usuario }}</strong>
+        </p>
+
+        <hr>
+
+        <a href="/novo" role="button">
+            Abrir Chamado
+        </a>
+
+        <a href="/fila" role="button">
+            Fila de Chamados
+        </a>
+
+        <a href="/logout" role="button" class="secondary">
+            Sair
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

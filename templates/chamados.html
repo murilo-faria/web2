@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Fila de Chamados</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <div class="card">
+
+        <h2>Fila de Chamados</h2>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Descrição</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% if chamados %}
+
+                    {% for chamado in chamados %}
+
+                    <tr>
+
+                        <td>{{ chamado[0] }}</td>
+
+                        <td>{{ chamado[1] }}</td>
+
+                        <td>{{ chamado[2] }}</td>
+
+                        <td>
+
+                            {% if chamado[3] == "Alta" %}
+
+                                <span class="alta">Alta</span>
+
+                            {% elif chamado[3] == "Média" %}
+
+                                <span class="media">Média</span>
+
+                            {% else %}
+
+                                <span class="baixa">Baixa</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if chamado[4] == "Aberto" %}
+
+                                <span class="aberto">
+                                    {{ chamado[4] }}
+                                </span>
+
+                            {% elif chamado[4] == "Em Atendimento" %}
+
+                                <span class="atendimento">
+                                    {{ chamado[4] }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="resolvido">
+                                    {{ chamado[4] }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td style="white-space: nowrap;">
+
+                            {% if chamado[4] == "Aberto" %}
+
+                                <a href="/atender/{{ chamado[0] }}"
+                                   role="button"
+                                   class="contrast"
+                                   style="padding:6px 10px;font-size:13px;">
+                                    Atender
+                                </a>
+
+                            {% elif chamado[4] == "Em Atendimento" %}
+
+                                <a href="/concluir/{{ chamado[0] }}"
+                                   role="button"
+                                   style="padding:6px 10px;font-size:13px;">
+                                    Concluir
+                                </a>
+
+                            {% endif %}
+
+                            <a href="/cancelar/{{ chamado[0] }}"
+                               role="button"
+                               class="secondary"
+                               style="padding:6px 10px;font-size:13px;"
+                               onclick="return confirm('Deseja realmente cancelar este chamado?')">
+                                Cancelar
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <tr>
+
+                        <td colspan="6" style="text-align:center;">
+                            Nenhum chamado encontrado.
+                        </td>
+
+                    </tr>
+
+                {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <a href="/" role="button" class="secondary">
+            Voltar
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

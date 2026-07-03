@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Abrir Chamado</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <div class="card">
+
+        <h2>Abrir Chamado</h2>
+
+        <form method="POST">
+
+            <label>Cliente</label>
+
+            <input
+                type="text"
+                name="cliente"
+                required>
+
+            <label>Descrição</label>
+
+            <textarea
+                name="descricao"
+                required></textarea>
+
+            <label>Prioridade</label>
+
+            <select name="prioridade">
+
+                <option>Baixa</option>
+                <option>Média</option>
+                <option>Alta</option>
+
+            </select>
+
+            <button type="submit">
+                Salvar Chamado
+            </button>
+
+        </form>
+
+        <a href="/" role="button" class="secondary">
+            Voltar
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>
